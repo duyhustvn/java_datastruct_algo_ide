@@ -42,18 +42,18 @@ public abstract class Document {
 		return tokens;
 	}
 
-	protected List<String> getTokens(String pattern, String textBase)
-	{
-		ArrayList<String> tokens = new ArrayList<String>();
-		Pattern tokSplitter = Pattern.compile(pattern);
-		Matcher m = tokSplitter.matcher(textBase);
+	// protected List<String> getTokens(String pattern, String textBase)
+	// {
+	// 	ArrayList<String> tokens = new ArrayList<String>();
+	// 	Pattern tokSplitter = Pattern.compile(pattern);
+	// 	Matcher m = tokSplitter.matcher(textBase);
 
-		while (m.find()) {
-			tokens.add(m.group());
-		}
+	// 	while (m.find()) {
+	// 		tokens.add(m.group());
+	// 	}
 
-		return tokens;
-	}
+	//	return tokens;
+	// }
 	
 	/** This is a helper function that returns the number of syllables
 	 * in a word.  You should write this and use it in your 
@@ -79,23 +79,47 @@ public abstract class Document {
 		// TODO: Implement this method so that you can call it from the 
 		// getNumSyllables method in BasicDocument (module 2) and
 		// EfficientDocument (module 3).
-		List<String> arrStr = new ArrayList<String>();
-		String pattern = "[aeiouyAEIOUY]+";
-		arrStr = this.getTokens(pattern, word);
-		if (arrStr.size() == 0) {
-			return 0;
-		} else if (arrStr.size() == 1) {
-			return 1;
-		} else {
-			String lastStr = arrStr.get(arrStr.size() - 1);
-			char lastChar = lastStr.charAt(lastStr.length() - 1);
-			if (lastChar == 'e' && lastStr.length() == 1 && word.charAt(word.length() - 1) == lastChar ) {
-				return arrStr.size() - 1;
-			} else {
-				return arrStr.size();
+
+		// Method 1
+		// List<String> arrStr = new ArrayList<String>();
+		// String pattern = "[aeiouyAEIOUY]+";
+		// arrStr = this.getTokens(pattern, word);
+		// if (arrStr.size() == 0) {
+		// 	return 0;
+		// } else if (arrStr.size() == 1) {
+		// 	return 1;
+		// } else {
+		// 	String lastStr = arrStr.get(arrStr.size() - 1);
+		// 	char lastChar = lastStr.charAt(lastStr.length() - 1);
+		// 	if (lastChar == 'e' && lastStr.length() == 1 && word.charAt(word.length() - 1) == lastChar ) {
+		// 		return arrStr.size() - 1;
+		// 	} else {
+		// 		return arrStr.size();
+		// 	}
+		// }
+
+		// Method 2
+		int count = 0;
+		boolean	newSyllable = true;
+		String vowels = "aeiouy";
+		String str = word.toLowerCase();
+		char[] wordArr = str.toCharArray();
+
+		for (int i = 0; i < str.length(); i++) {
+			if (newSyllable  && wordArr[i] == 'e' && i == str.length() - 1 && count > 0) {
+				count = count;
+			}
+			else if (newSyllable && vowels.indexOf(wordArr[i]) > -1 ) {
+				count++;
+				newSyllable = false;
+			}
+
+			else if (vowels.indexOf(wordArr[i]) == -1) {
+				newSyllable = true;
 			}
 		}
-	}
+		return count;
+		}
 
 
 	
@@ -161,7 +185,17 @@ public abstract class Document {
 	{
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-	    return this.text.length();
+		Document doc = new BasicDocument(this.getText());
+
+		System.out.println("text: " + text);
+		int words = doc.getNumWords();
+		System.out.println("words: " + words);
+		int sentences = doc.getNumSentences();
+		System.out.println("sentences: " + sentences);
+		int syllables = doc.getNumSyllables();
+		System.out.println("syllables: " + syllables);
+        double score = 206.835 - 1.015 * ((float)words/sentences) - 84.6 * ((float)syllables/words);
+        return score;
 	}
 	
 	

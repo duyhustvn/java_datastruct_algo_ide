@@ -81,7 +81,7 @@ public class BasicDocument extends Document
 	public int getNumSyllables()
 	{
 	    //TODO: Implement this method in week 2.  See the Module 2 support videos 
-        // if you need help.  And note that there is no need to use a regular
+        // if you need help.  And note that there is no need tfleschFieldo use a regular
 		// expression for the syllable counting.  We recommend you implement 
 		// the helper function countSyllables in Document.java using a loop, 
 		// and then call it here on each word.
