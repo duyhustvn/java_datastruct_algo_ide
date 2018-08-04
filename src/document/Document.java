@@ -195,7 +195,17 @@ public abstract class Document {
 		int syllables = doc.getNumSyllables();
 		System.out.println("syllables: " + syllables);
         double score = 206.835 - 1.015 * ((float)words/sentences) - 84.6 * ((float)syllables/words);
-        return score;
+        System.out.println("score: " + score);
+
+       	Document efficientDocument = new EfficientDocument(this.getText());
+		int eWords = efficientDocument.getNumWords();
+		System.out.println("ewords: " + eWords);
+		int eSentences = efficientDocument.getNumSentences();
+		System.out.println("esentences: " + eSentences);
+		int eSyllabels = efficientDocument.getNumSyllables();
+		System.out.println("esyllables: " + eSyllabels);
+		double eScore = 206.835 - 1.015 * ((float)eWords/eSentences) - 84.6 * ((float)eSyllabels/eWords);
+		return eScore;
 	}
 	
 	
