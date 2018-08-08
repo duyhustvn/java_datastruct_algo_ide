@@ -1,5 +1,7 @@
 package textgen;
 
+import org.reactfx.util.LL;
+
 import java.util.AbstractList;
 
 
@@ -17,34 +19,81 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
 		// TODO: Implement this method
+		size = 0;
+		head = new LLNode<E>(null);
+		tail = new LLNode<E>(null);
+		head.next = tail;
+		tail.prev = head;
 	}
 
 	/**
 	 * Appends an element to the end of the list
 	 * @param element The element to add
 	 */
-	public boolean add(E element ) 
+	public boolean add(E element )
 	{
 		// TODO: Implement this method
-		return false;
+		LLNode<E> newNode = new LLNode<E>(element);
+		tail.prev.next = newNode;
+		newNode.prev = tail.prev;
+		newNode.next = tail;
+		tail.prev = newNode;
+		this.size++;
+		return true;
 	}
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	public E get(int index) 
 	{
-		// TODO: Implement this method.
-		return null;
+		if (index > this.size - 1 || index < 0) {
+			throw new IndexOutOfBoundsException("Index out of bound");
+		}
+
+		int i = 0;
+		LLNode<E> p = head;
+		while( (p = p.next) != tail) {
+			if (i == index) {
+				break;
+			}
+			i += 1;
+		}
+
+		return p.data;
 	}
 
 	/**
 	 * Add an element to the list at the specified index
-	 * @param The index where the element should be added
+	 * @param index where the element should be added
 	 * @param element The element to add
 	 */
 	public void add(int index, E element ) 
 	{
 		// TODO: Implement this method
+		if (index < 0 || index > this.size ) {
+			throw new IndexOutOfBoundsException("Index out of bound");
+		}
+
+		if (index == this.size) {
+			this.add(element);
+			return;
+		}
+
+		LLNode p = head;
+
+		LLNode<E> newNode = new LLNode<E>(element);
+		int count = 0;
+		while((p = p.next) != tail) {
+			if (count == index) {
+				break;
+			}
+			count++;
+		}
+		p.next.prev = newNode;
+		newNode.prev = p;
+		newNode.next = p.next;
+		p.next = newNode;
+		this.size++;
 	}
 
 
@@ -52,7 +101,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	public int size() 
 	{
 		// TODO: Implement this method
-		return -1;
+		return this.size;
 	}
 
 	/** Remove a node at the specified index and return its data element.
