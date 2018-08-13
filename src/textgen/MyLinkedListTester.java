@@ -131,7 +131,6 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddEnd()
 	{
-        // TODO: implement this test
 		assertEquals("AddEnd: check element 0 is correct", (Integer) 0, longerList.get(0));
 		assertEquals("AddEnd: check element 1 is correct", (Integer) 1 , longerList.get(1));
 		assertEquals("AddEnd: check element 9 is correct", (Integer) 9 , longerList.get(9));
@@ -144,7 +143,6 @@ public class MyLinkedListTester {
 	@Test
 	public void testSize()
 	{
-		// TODO: implement this test
 		assertEquals("Size: check size of list1  is correct", 4, list1.size());
 		assertEquals("Size: check size of shortlist  is correct", 2, shortList.size());
 	}
@@ -158,7 +156,6 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddAtIndex()
 	{
-        // TODO: implement this test
 		assertEquals("AddEnd: check element 3 is correct", (Integer) 33 , list1.get(3));
 		try{
 			list1.add(-1, 2);
@@ -182,7 +179,6 @@ public class MyLinkedListTester {
 	@Test
 	public void testSet()
 	{
-	    // TODO: implement this test
 		try {
 			list1.set(4, 44);
 			fail("The test fail");
@@ -193,7 +189,4 @@ public class MyLinkedListTester {
 		assertEquals("Set: Set element 2 to 11 is correct",(Integer) 11 , (Integer)list1.set(1, 11));
 	}
 
-//
-//	// TODO: Optionally add more test methods.
-	
 }
