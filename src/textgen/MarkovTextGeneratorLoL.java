@@ -19,6 +19,10 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	
 	// The random number generator
 	private Random rnGenerator;
+
+	public int getWordListSize() {
+		return this.wordList.size();
+	}
 	
 	public MarkovTextGeneratorLoL(Random generator)
 	{
@@ -32,6 +36,7 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	@Override
 	public void train(String sourceText)
 	{
+		String[] sourceTextArr = sourceText.split("[ .!?]+");
 		// TODO: Implement this method
 	}
 	
