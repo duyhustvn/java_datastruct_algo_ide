@@ -42,6 +42,7 @@ public class MyLinkedListTester {
 		list1.add(65);
 		list1.add(21);
 		list1.add(42);
+		list1.add(3, 33);
 		
 	}
 
@@ -59,39 +60,39 @@ public class MyLinkedListTester {
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-			
+
 		}
-		
+
 		// test short list, first contents, then out of bounds
 		assertEquals("Check first", "A", shortList.get(0));
 		assertEquals("Check second", "B", shortList.get(1));
-		
+
 		try {
 			shortList.get(-1);
-			fail("Check out of bounds");
+			fail("Check out of bounds ngu");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+
 		}
 		try {
 			shortList.get(2);
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+
 		}
 		// test longer list contents
 		for(int i = 0; i<LONG_LIST_LENGTH; i++ ) {
 			assertEquals("Check "+i+ " element", (Integer)i, longerList.get(i));
 		}
-		
+
 		// test off the end of the longer array
 		try {
 			longerList.get(-1);
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+
 		}
 		try {
 			longerList.get(LONG_LIST_LENGTH);
@@ -99,22 +100,29 @@ public class MyLinkedListTester {
 		}
 		catch (IndexOutOfBoundsException e) {
 		}
-		
+
 	}
-	
-	
-	/** Test removing an element from the list.
-	 * We've included the example from the concept challenge.
-	 * You will want to add more tests.  */
+
+
+//	/** Test removing an element from the list.
+//	 * We've included the example from the concept challenge.
+//	 * You will want to add more tests.  */
+
 	@Test
 	public void testRemove()
 	{
 		int a = list1.remove(0);
 		assertEquals("Remove: check a is correct ", 65, a);
 		assertEquals("Remove: check element 0 is correct ", (Integer)21, list1.get(0));
-		assertEquals("Remove: check size is correct ", 2, list1.size());
-		
-		// TODO: Add more tests here
+		assertEquals("Remove: check size is correct ", 3, list1.size());
+
+		try {
+			list1.remove(-1);
+			fail("index out of bound");
+		} catch (IndexOutOfBoundsException e) {
+
+		}
+
 	}
 	
 	/** Test adding an element into the end of the list, specifically
@@ -123,19 +131,23 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddEnd()
 	{
-        // TODO: implement this test
-		
+		assertEquals("AddEnd: check element 0 is correct", (Integer) 0, longerList.get(0));
+		assertEquals("AddEnd: check element 1 is correct", (Integer) 1 , longerList.get(1));
+		assertEquals("AddEnd: check element 9 is correct", (Integer) 9 , longerList.get(9));
+		assertEquals("AddEnd: check element 9 is correct", (String) "A" , shortList.get(0));
+		assertEquals("AddEnd: check element 9 is correct", (String) "B" , shortList.get(1));
 	}
 
-	
+
 	/** Test the size of the list */
 	@Test
 	public void testSize()
 	{
-		// TODO: implement this test
+		assertEquals("Size: check size of list1  is correct", 4, list1.size());
+		assertEquals("Size: check size of shortlist  is correct", 2, shortList.size());
 	}
 
-	
+
 	
 	/** Test adding an element into the list at a specified index,
 	 * specifically:
@@ -144,19 +156,37 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddAtIndex()
 	{
-        // TODO: implement this test
-		
+		assertEquals("AddEnd: check element 3 is correct", (Integer) 33 , list1.get(3));
+		try{
+			list1.add(-1, 2);
+			fail("Index is out of bound");
+		}
+
+		catch( IndexOutOfBoundsException e){
+
+		}
+		try{
+			list1.add(6, 66);
+			fail("Index is out of bound");
+		}
+
+		catch( IndexOutOfBoundsException e){
+
+		}
 	}
-	
-	/** Test setting an element in the list */
+
+//	/** Test setting an element in the list */
 	@Test
 	public void testSet()
 	{
-	    // TODO: implement this test
-	    
+		try {
+			list1.set(4, 44);
+			fail("The test fail");
+		} catch(IndexOutOfBoundsException e) {
+
+		}
+
+		assertEquals("Set: Set element 2 to 11 is correct",(Integer) 11 , (Integer)list1.set(1, 11));
 	}
-	
-	
-	// TODO: Optionally add more test methods.
-	
+
 }

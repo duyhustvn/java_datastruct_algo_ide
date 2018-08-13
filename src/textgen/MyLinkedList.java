@@ -1,5 +1,8 @@
 package textgen;
 
+import com.sun.javaws.exceptions.ErrorCodeResponseException;
+import org.reactfx.util.LL;
+
 import java.util.AbstractList;
 
 
@@ -17,42 +20,86 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Create a new empty LinkedList */
 	public MyLinkedList() {
 		// TODO: Implement this method
+		size = 0;
+		head = new LLNode<E>(null);
+		tail = new LLNode<E>(null);
+		head.next = tail;
+		tail.prev = head;
 	}
 
 	/**
 	 * Appends an element to the end of the list
 	 * @param element The element to add
 	 */
-	public boolean add(E element ) 
+	public boolean add(E element )
 	{
-		// TODO: Implement this method
-		return false;
+		LLNode<E> newNode = new LLNode<E>(element);
+		tail.prev.next = newNode;
+		newNode.prev = tail.prev;
+		newNode.next = tail;
+		tail.prev = newNode;
+		this.size++;
+		return true;
 	}
 
 	/** Get the element at position index 
 	 * @throws IndexOutOfBoundsException if the index is out of bounds. */
 	public E get(int index) 
 	{
-		// TODO: Implement this method.
-		return null;
+		if (index > this.size - 1 || index < 0) {
+			throw new IndexOutOfBoundsException("Index out of bound");
+		}
+
+		int i = 0;
+		LLNode<E> p = head;
+		while( (p = p.next) != tail) {
+			if (i == index) {
+				break;
+			}
+			i += 1;
+		}
+
+		return p.data;
 	}
 
 	/**
 	 * Add an element to the list at the specified index
-	 * @param The index where the element should be added
+	 * @param index where the element should be added
 	 * @param element The element to add
 	 */
 	public void add(int index, E element ) 
 	{
-		// TODO: Implement this method
+		if (index < 0 || index > this.size ) {
+			throw new IndexOutOfBoundsException("Index out of bound");
+		}
+
+		if (index == this.size) {
+			this.add(element);
+			return;
+		}
+
+		LLNode p = head;
+
+		LLNode<E> newNode = new LLNode<E>(element);
+		int count = 0;
+		while((p = p.next) != tail) {
+			if (count == index) {
+				break;
+			}
+			count++;
+		}
+		p.next.prev = newNode;
+		newNode.prev = p;
+		newNode.next = p.next;
+		p.next = newNode;
+		this.size++;
 	}
 
 
 	/** Return the size of the list */
 	public int size() 
 	{
-		// TODO: Implement this method
-		return -1;
+		return this.size;
 	}
 
 	/** Remove a node at the specified index and return its data element.
@@ -63,8 +110,25 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 */
 	public E remove(int index) 
 	{
-		// TODO: Implement this method
-		return null;
+		if (index <= -1 || index >= this.size) {
+			throw new IndexOutOfBoundsException("Index out of bound");
+		} else {
+			LLNode<E> removeNode = head;
+			int i  = 0;
+			while ((removeNode = removeNode.next) != tail) {
+				if (i == index) {
+					removeNode.prev.next = removeNode.next;
+					removeNode.next.prev = removeNode.prev;
+					removeNode.next = null;
+					removeNode.prev = null;
+					this.size--;
+					break;
+				}
+				i++;
+			}
+			return removeNode.data;
+		}
+
 	}
 
 	/**
@@ -74,10 +138,22 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @return The element that was replaced
 	 * @throws IndexOutOfBoundsException if the index is out of bounds.
 	 */
+	// set new value for list element
 	public E set(int index, E element) 
 	{
-		// TODO: Implement this method
-		return null;
+	   	LLNode<E> p = head;
+	   	if (index >= this.size || index <= -1) {
+	   		throw new IndexOutOfBoundsException("Index out of bound");
+		}
+		int i = 0;
+	   	while((p = p.next) != tail) {
+	   		if (index == i) {
+	   			p.data = element;
+	   			break;
+			}
+			i++;
+		}
+		return p.data;
 	}   
 }
 
@@ -87,7 +163,6 @@ class LLNode<E>
 	LLNode<E> next;
 	E data;
 
-	// TODO: Add any other methods you think are useful here
 	// E.g. you might want to add another constructor
 
 	public LLNode(E e) 
