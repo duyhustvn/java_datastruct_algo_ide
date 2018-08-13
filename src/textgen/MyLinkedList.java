@@ -1,5 +1,6 @@
 package textgen;
 
+import com.sun.javaws.exceptions.ErrorCodeResponseException;
 import org.reactfx.util.LL;
 
 import java.util.AbstractList;
@@ -100,7 +101,6 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/** Return the size of the list */
 	public int size() 
 	{
-		// TODO: Implement this method
 		return this.size;
 	}
 
@@ -112,8 +112,40 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 */
 	public E remove(int index) 
 	{
-		// TODO: Implement this method
-		return null;
+		if (index <= -1 || index >= this.size) {
+			throw new IndexOutOfBoundsException("Index out of bound");
+		}
+//		if (index == 0) {
+//			removeNode = head.next;
+//			head.next = removeNode.next;
+//			removeNode.next.prev = head.next;
+//			return removeNode.data;
+//		}
+//
+//		 else if (index == this.size - 1) {
+//			removeNode = tail.prev;
+//			removeNode.prev.next = null;
+//			removeNode.prev = null;
+//			return removeNode.data;
+//		}
+
+		else {
+			LLNode<E> removeNode = head;
+			int i  = 0;
+			while ((removeNode = removeNode.next) != tail) {
+				if (i == index) {
+					removeNode.prev.next = removeNode.next;
+					removeNode.next.prev = removeNode.prev;
+					removeNode.next = null;
+					removeNode.prev = null;
+					this.size--;
+					break;
+				}
+				i++;
+			}
+			return removeNode.data;
+		}
+
 	}
 
 	/**
@@ -123,10 +155,22 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	 * @return The element that was replaced
 	 * @throws IndexOutOfBoundsException if the index is out of bounds.
 	 */
+	// set new value for list element
 	public E set(int index, E element) 
 	{
-		// TODO: Implement this method
-		return null;
+	   	LLNode<E> p = head;
+	   	if (index >= this.size || index <= -1) {
+	   		throw new IndexOutOfBoundsException("Index out of bound");
+		}
+		int i = 0;
+	   	while((p = p.next) != tail) {
+	   		if (index == i) {
+	   			p.data = element;
+	   			break;
+			}
+			i++;
+		}
+		return p.data;
 	}   
 }
 

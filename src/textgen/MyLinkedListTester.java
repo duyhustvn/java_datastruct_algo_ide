@@ -107,16 +107,23 @@ public class MyLinkedListTester {
 //	/** Test removing an element from the list.
 //	 * We've included the example from the concept challenge.
 //	 * You will want to add more tests.  */
-//	@Test
-//	public void testRemove()
-//	{
-//		int a = list1.remove(0);
-//		assertEquals("Remove: check a is correct ", 65, a);
-//		assertEquals("Remove: check element 0 is correct ", (Integer)21, list1.get(0));
-//		assertEquals("Remove: check size is correct ", 2, list1.size());
-//
-//		// TODO: Add more tests here
-//	}
+
+	@Test
+	public void testRemove()
+	{
+		int a = list1.remove(0);
+		assertEquals("Remove: check a is correct ", 65, a);
+		assertEquals("Remove: check element 0 is correct ", (Integer)21, list1.get(0));
+		assertEquals("Remove: check size is correct ", 3, list1.size());
+
+		try {
+			list1.remove(-1);
+			fail("index out of bound");
+		} catch (IndexOutOfBoundsException e) {
+
+		}
+
+	}
 	
 	/** Test adding an element into the end of the list, specifically
 	 *  public boolean add(E element)
@@ -172,13 +179,20 @@ public class MyLinkedListTester {
 	}
 
 //	/** Test setting an element in the list */
-//	@Test
-//	public void testSet()
-//	{
-//	    // TODO: implement this test
-//
-//	}
-//
+	@Test
+	public void testSet()
+	{
+	    // TODO: implement this test
+		try {
+			list1.set(4, 44);
+			fail("The test fail");
+		} catch(IndexOutOfBoundsException e) {
+
+		}
+
+		assertEquals("Set: Set element 2 to 11 is correct",(Integer) 11 , (Integer)list1.set(1, 11));
+	}
+
 //
 //	// TODO: Optionally add more test methods.
 	
