@@ -51,7 +51,7 @@ public class DictionaryLLTester {
 		assertEquals("Testing size for small dict", 4, smallDict.size());
 		assertEquals("Testing size for large dict", 4438, largeDict.size());
 	}
-	
+
 	/** Test the isWord method */
 	@Test
 	public void testIsWord()
@@ -59,24 +59,24 @@ public class DictionaryLLTester {
 		assertEquals("Testing isWord on empty: Hello", false, emptyDict.isWord("Hello"));
 		assertEquals("Testing isWord on small: Hello", true, smallDict.isWord("Hello"));
 		assertEquals("Testing isWord on large: Hello", true, largeDict.isWord("Hello"));
-		
+
 		assertEquals("Testing isWord on small: hello", true, smallDict.isWord("hello"));
 		assertEquals("Testing isWord on large: hello", true, largeDict.isWord("hello"));
 
 		assertEquals("Testing isWord on small: hellow", false, smallDict.isWord("hellow"));
 		assertEquals("Testing isWord on large: hellow", false, largeDict.isWord("hellow"));
-		
+
 		assertEquals("Testing isWord on empty: empty string", false, emptyDict.isWord(""));
 		assertEquals("Testing isWord on small: empty string", false, smallDict.isWord(""));
 		assertEquals("Testing isWord on large: empty string", false, largeDict.isWord(""));
-		
+
 		assertEquals("Testing isWord on small: no", false, smallDict.isWord("no"));
 		assertEquals("Testing isWord on large: no", true, largeDict.isWord("no"));
-		
+
 		assertEquals("Testing isWord on small: subsequent", true, smallDict.isWord("subsequent"));
 		assertEquals("Testing isWord on large: subsequent", true, largeDict.isWord("subsequent"));
-		
-		
+
+
 	}
 	
 	/** Test the addWord method */
