@@ -9,6 +9,7 @@ import java.util.Set;
  *
  */
 class TrieNode {
+	// children chứa link tới các TrieNode
 	private HashMap<Character, TrieNode> children; 
 	private String text;  // Maybe omit for space
 	private boolean isWord;
@@ -57,6 +58,7 @@ class TrieNode {
 		children.put(c, next);
 		return next;
 	}
+
 	
 	/** Return the text string at this node */
     public String getText()

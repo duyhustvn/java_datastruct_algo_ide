@@ -14,6 +14,7 @@ import java.util.LinkedList;
 public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 
     private TrieNode root;
+    private HashMap<Character, TrieNode> children;
     private int size;
     
 
@@ -37,9 +38,38 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	 * @return true if the word was successfully added or false if it already exists
 	 * in the dictionary.
 	 */
+
+
 	public boolean addWord(String word)
 	{
-	    //TODO: Implement this method.
+		//TODO: Implement this method.
+		if (this.isWord(word)) {
+			return false;
+		}
+
+		word = word.toLowerCase();
+		TrieNode current = root;
+		TrieNode newNode;
+		for (int i = 0; i < word.length(); i++) {
+			if (current.getChild(word.charAt(i)) != null) {
+				current = current.getChild(word.charAt(i));
+				if (i == word.length() - 1) {
+					size++;
+					current.setEndsWord(true);
+				}
+				continue;
+			} else {
+			   current = current.insert(word.charAt(i));
+			   if (i == word.length() - 1) {
+			   		current.setEndsWord(true);
+			   		size++;
+			   } else {
+			   		current.setEndsWord(false);
+			   }
+			}
+
+		}
+
 	    return false;
 	}
 	
@@ -50,7 +80,7 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public int size()
 	{
 	    //TODO: Implement this method
-	    return 0;
+	    return this.size;
 	}
 	
 	
@@ -59,8 +89,29 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	@Override
 	public boolean isWord(String s) 
 	{
+		s = s.toLowerCase();
+		TrieNode current = root;
+		boolean isExist = false;
 	    // TODO: Implement this method
-		return false;
+		for (int i = 0; i < s.length(); i++) {
+
+			if (current.getChild(s.charAt(i)) != null) {
+				current = current.getChild(s.charAt(i));
+				isExist = true;
+			} else {
+				isExist = false;
+				break;
+			}
+
+			if (i == s.length() - 1) {
+				if (current.endsWord()) {
+					isExist = true;
+				} else {
+					isExist = false;
+				}
+			}
+		}
+		return isExist;
 	}
 
 	/** 

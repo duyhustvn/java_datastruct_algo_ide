@@ -184,38 +184,12 @@ public abstract class Document {
 	public double getFleschScore()
 	{
 	    // TODO: You will play with this method in week 1, and 
-		// then implement it in week 2
-		// Document doc = new BasicDocument(this.getText());
 
-		// int words = doc.getNumWords();
-		// System.out.println("words: " + words);
-		// int sentences = doc.getNumSentences();
-		// System.out.println("sentences: " + sentences);
-		// int syllables = doc.getNumSyllables();
-		// System.out.println("syllables: " + syllables);
-        // double score = 206.835 - 1.015 * ((float)words/sentences) - 84.6 * ((float)syllables/words);
-        // System.out.println("score: " + score);
-
-       	// Document efficientDocument = new EfficientDocument(this.getText());
-		// int eWords = efficientDocument.getNumWords();
-		// System.out.println("ewords: " + eWords);
-		// int eSentences = efficientDocument.getNumSentences();
-		// System.out.println("esentences: " + eSentences);
-		// int eSyllabels = efficientDocument.getNumSyllables();
-		// System.out.println("esyllables: " + eSyllabels);
-		// double eScore = 206.835 - 1.015 * ((float)eWords/eSentences) - 84.6 * ((float)eSyllabels/eWords);
-		// return eScore;
 		int words = this.getNumWords();
-//		System.out.println("words: " + words);
-
 		int sentences = this.getNumSentences();
-//		System.out.println("sentences: " + sentences);
-
 		int syllabels = this.getNumSyllables();
-//		System.out.println("syllabels: " + syllabels);
 
 		double score = 206.835 - 1.015 * ((float)words/sentences) - 84.6 * ((float)syllabels/words);
-//        System.out.println("score: " + score);
 
         return score;
 	}
