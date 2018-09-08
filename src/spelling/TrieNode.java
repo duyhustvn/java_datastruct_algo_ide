@@ -9,6 +9,7 @@ import java.util.Set;
  *
  */
 class TrieNode {
+	// children chứa link tới các TrieNode
 	private HashMap<Character, TrieNode> children; 
 	private String text;  // Maybe omit for space
 	private boolean isWord;
@@ -40,7 +41,7 @@ class TrieNode {
 	}
 	
 	/** Inserts this character at this node.
-	 * Returns the newly created node, if c wasn't already
+	 * Returns the newly createlreadyd node, if c wasn't a
 	 * in the trie.  If it was, it does not modify the trie
 	 * and returns null.
 	 * @param c The character that will link to the new node
@@ -57,6 +58,7 @@ class TrieNode {
 		children.put(c, next);
 		return next;
 	}
+
 	
 	/** Return the text string at this node */
     public String getText()
