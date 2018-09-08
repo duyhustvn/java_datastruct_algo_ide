@@ -1,10 +1,9 @@
 package spelling;
 
-import java.util.List;
-import java.util.Set;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
+import sun.reflect.generics.tree.Tree;
+
+import javax.swing.tree.TreeNode;
+import java.util.*;
 
 /** 
  * An trie data structure that implements the Dictionary and the AutoComplete ADT
@@ -151,8 +150,37 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     	 //       If it is a word, add it to the completions list
     	 //       Add all of its child nodes to the back of the queue
     	 // Return the list of completions
-    	 
-         return null;
+
+		 List<String> completions = new LinkedList<String>();
+		 if (numCompletions == 0) {
+		 	return completions;
+		 }
+
+		TrieNode current = root;
+
+		for (int i = 0; i < prefix.length(); i++) {
+			if (( current =  current.getChild(prefix.charAt(i))) == null) {
+				return completions;
+			}
+		}
+
+		Queue<TrieNode> queue = new LinkedList<TrieNode>();
+
+		queue.add(current);
+
+		while(queue.size() != 0 && completions.size() != numCompletions) {
+			current = ((LinkedList<TrieNode>) queue).remove();
+			if (current.endsWord()) {
+				((LinkedList<String>) completions).add(current.getText());
+			}
+			Set<Character> childCharacterSet = current.getValidNextCharacters();
+			for (Character character: childCharacterSet) {
+				TrieNode childNode = current.getChild(character);
+				queue.add(childNode);
+			}
+		}
+
+		return completions;
      }
 
  	// For debugging

@@ -41,7 +41,7 @@ class TrieNode {
 	}
 	
 	/** Inserts this character at this node.
-	 * Returns the newly created node, if c wasn't already
+	 * Returns the newly createlreadyd node, if c wasn't a
 	 * in the trie.  If it was, it does not modify the trie
 	 * and returns null.
 	 * @param c The character that will link to the new node
