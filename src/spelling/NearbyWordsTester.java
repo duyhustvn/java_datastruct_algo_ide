@@ -57,7 +57,7 @@ public class NearbyWordsTester {
         DictionaryLoader.loadDictionary(d, "data/dict.txt");
         nearbyWords = new NearbyWords(d);
         long startTime = System.nanoTime();
-        nearbyWords.suggestions(word, 6);
+        nearbyWords.suggestions(word, 10);
         long endTime = System.nanoTime();
         System.out.println("it take " + (endTime - startTime) / 1000000000.0 + " seconds");
     }

@@ -83,17 +83,7 @@ public class NearbyWords implements SpellingSuggest {
         // TODO: Implement this method
         for (int i = 0; i <= s.length(); i++) {
             for (int j = (int) 'a'; j <= (int) 'z'; j++) {
-//                String firstPart = s.substring(0, i) + (char) j;
-//                String secondPart = s.substring(i);
-//                String result = firstPart + secondPart;
-
                 StringBuilder result = new StringBuilder(s).insert(i, (char) j);
-
-//                if (dict.isWord(result) && wordsOnly && !currentList.contains(result)) {
-//                    currentList.add(result);
-//                } else if (!wordsOnly && !currentList.contains(result)) {
-//                    currentList.add(result);
-//                }
 
                 if (!currentList.contains(result.toString()) &&
                         (!wordsOnly || dict.isWord(result.toString()))) {
@@ -101,8 +91,6 @@ public class NearbyWords implements SpellingSuggest {
                 }
             }
         }
-
-
     }
 
     /**
@@ -117,9 +105,6 @@ public class NearbyWords implements SpellingSuggest {
     public void deletions(String s, List<String> currentList, boolean wordsOnly) {
         // TODO: Implement this method
         for (int i = 0; i < s.length(); i++) {
-//            String firstPart = s.substring(0, i);
-//            String secondPart = s.substring(i + 1);
-//            String result = firstPart + secondPart;
             StringBuilder result = new StringBuilder(s).deleteCharAt(i);
             if (!currentList.contains(result.toString()) &&
                     (!wordsOnly || dict.isWord(result.toString()))) {
@@ -138,7 +123,7 @@ public class NearbyWords implements SpellingSuggest {
      */
     @Override
     public List<String> suggestions(String word, int numSuggestions) {
-
+        long startTime = System.nanoTime();
         // initial variables
         List<String> queue = new LinkedList<String>();     // String to explore
         HashSet<String> visited = new HashSet<String>();   // to avoid exploring the same
@@ -150,21 +135,38 @@ public class NearbyWords implements SpellingSuggest {
         queue.add(word);
         String retWord;
         List<String> distanceWord = new LinkedList<String>();
+        int count = 0;
         // TODO: Implement the remainder of this method, see assignment for algorithm
 
         while (queue.size() != 0 && retList.size() != numSuggestions) {
+//            retWord = ((LinkedList<String>) queue).remove();
+//            if (visited.contains(retWord)) {
+//                continue;
+//            }
+//            visited.add(retWord);
+//            if (dict.isWord(retWord)) {
+//                retList.add(retWord);
+//            }
+//            distanceWord = this.distanceOne(retWord, false);
+//            queue.addAll(distanceWord);
+            count++;
+            if (count >= THRESHOLD) break;
+
             retWord = ((LinkedList<String>) queue).remove();
-            if (visited.contains(retWord)) {
-                continue;
-            }
-            visited.add(retWord);
-            if (dict.isWord(retWord)) {
-                retList.add(retWord);
-            }
             distanceWord = this.distanceOne(retWord, false);
-            queue.addAll(distanceWord);
+            for (String n: distanceWord) {
+                if (!visited.contains(n)) {
+                    visited.add(n);
+                    queue.add(n);
+                    if (dict.isWord(n)) {
+                        retList.add(n);
+                    }
+                }
+            }
         }
-        System.out.println(retList);
+        long endTime = System.nanoTime();
+//        System.out.println("Suggest take: " + (endTime - startTime) / 1000000.0 + " milliseconds");
+
         return retList;
 
     }
@@ -180,11 +182,10 @@ public class NearbyWords implements SpellingSuggest {
 //	   System.out.println("One away word Strings for for \""+word+"\" are:");
 //	   System.out.println(l+"\n");
 //
-//	   word = "tailo";
+//	   word = "working";
 //	   List<String> suggest = w.suggestions(word, 10);
 //	   System.out.println("Spelling Suggestions for \""+word+"\" are:");
 //	   System.out.println(suggest);
-//
 //   }
 
 }
