@@ -1,19 +1,21 @@
 /-------------------------------------------------------------------------
-/ Starter Code and GUI Application for Course 2 in the
-/ Java Programming: Object Oriented Design of 
-/ Data Structures Specialization:
-/
+/ This repo hosts code following the course bellow
 / Data structures: Measuring and Optimizing Performance
 / https://www.coursera.org/learn/data-structures-optimizing-performance
 /
-/ Authored by UCSD MOOC Team:
-/ Mia Minnes, Christine Alvarado, Leo Porter, Alec Brickman
-/ and Adam Setters
-/
-/ Date: 10/29/2015
 /-------------------------------------------------------------------------
 
----------------------------------------------------------[ DESCRIPTION ]--
+--------------[ HOW TO RUN ]----------------------------------------------
+
+1. Download javafx sdk from this [link](https://gluonhq.com/products/javafx/) (if your computer don't have it yet) then extract it to any location you want. 
+2. Compile the application
+
+``` sh
+javac -cp src:lib/hamcrest-core-1.3.jar:lib/richtextfx-fat-0.6.10.jar --module-path /home/ledinhduy/javafx-sdk-18/lib --add-modules javafx.controls,javafx.fxml src/application/MainApp.java
+```
+
+ 
+--------------[ DESCRIPTION ]---------------------------------------------
 
 The files provided are skeleton code, as well as grading previews and 
 testing files to be used in completing the course programming 
