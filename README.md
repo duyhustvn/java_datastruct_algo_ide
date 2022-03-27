@@ -5,10 +5,14 @@
 /
 /-------------------------------------------------------------------------
 
+![](https://raw.githubusercontent.com/duyhustvn/java_datastruct_algo_ide/master/images/ide.gif)
 
---------------[ REQUIREMENT ]----------------------------------------------
-1. Oracle jdk 8
---------------[ HOW TO RUN ]----------------------------------------------
+
+## REQUIREMENT 
+1. Oracle jdk 
+
+## How to run
+### Using command line
 1. Go to the root of project
 2. Compile the application
 
@@ -21,15 +25,19 @@ javac -cp src:lib/hamcrest-core-1.3.jar:lib/richtextfx-fat-0.6.10.jar src/applic
 java -cp src:lib/hamcrest-core-1.3.jar:lib/richtextfx-fat-0.6.10.jar application.MainApp
 ```
 
+### Using eclipse 
+1. Create a new Java Project in your workspace 
+2. Import the starter files: File -> Import -> Select "File System" -> Next -> Browse and set root directory to folder contents of zip were extracted to -> Finish
+
  
---------------[ DESCRIPTION ]---------------------------------------------
+## DESCRIPTION
 
 The files provided are skeleton code, as well as grading previews and 
 testing files to be used in completing the course programming 
 assignments. Additionally, you are provided a runnable JavaFX program 
 which will help to test and demonstrate your implementations.
 
--------------------------------------------------------[ FILES BY WEEK ]--
+## FILES BY WEEK 
 
 Below are the files introduced in each week and used in each week
 of the course. See file for description...
@@ -63,14 +71,6 @@ Week 5 : Hash Maps and Edit Distance
 spelling.WordPath.java
 spelling.NearbyWords.java
 spelling.WPTree.java
-
----------------------------------------------------------------[ SETUP ]-- 
-
-Importing Project into eclipse:
-	1. Create a new Java Project in your workspace
-	2. Import the starter files:
-	  File -> Import -> Select "File System" -> Next -> Browse and set 
-	  root directory to folder contents of zip were extracted to -> Finish
 
 Feel free to use another IDE or manually compile and run your programs.
 If you need help, google is your friend.
