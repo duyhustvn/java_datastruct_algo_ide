@@ -1,10 +1,12 @@
 This repo hosts code following the course [Data structures: Measuring and Optimizing Performance](https://www.coursera.org/learn/data-structures-optimizing-performance) 
 
-![](https://raw.githubusercontent.com/duyhustvn/java_datastruct_algo_ide/master/images/ide.gif)
+| ![](https://raw.githubusercontent.com/duyhustvn/java_datastruct_algo_ide/master/images/ide.gif) |
+|:--:| 
+|*demo.gif*|
 
 
 ## REQUIREMENT 
-1. Oracle jdk 
+1. Oracle jdk 8 
 
 ## How to run
 ### Using command line
