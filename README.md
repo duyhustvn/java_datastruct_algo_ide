@@ -1,9 +1,4 @@
-/-------------------------------------------------------------------------
-/ This repo hosts code following the course bellow
-/ Data structures: Measuring and Optimizing Performance
-/ https://www.coursera.org/learn/data-structures-optimizing-performance
-/
-/-------------------------------------------------------------------------
+This repo hosts code following the course [Data structures: Measuring and Optimizing Performance](https://www.coursera.org/learn/data-structures-optimizing-performance) 
 
 ![](https://raw.githubusercontent.com/duyhustvn/java_datastruct_algo_ide/master/images/ide.gif)
 
@@ -29,13 +24,7 @@ java -cp src:lib/hamcrest-core-1.3.jar:lib/richtextfx-fat-0.6.10.jar application
 1. Create a new Java Project in your workspace 
 2. Import the starter files: File -> Import -> Select "File System" -> Next -> Browse and set root directory to folder contents of zip were extracted to -> Finish
 
- 
-## DESCRIPTION
-
-The files provided are skeleton code, as well as grading previews and 
-testing files to be used in completing the course programming 
-assignments. Additionally, you are provided a runnable JavaFX program 
-which will help to test and demonstrate your implementations.
+NOTE: App will load file data/dict.txt for list of words. You can add words to the file 
 
 ## FILES BY WEEK 
 
