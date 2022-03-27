@@ -5,13 +5,20 @@
 /
 /-------------------------------------------------------------------------
 
---------------[ HOW TO RUN ]----------------------------------------------
 
-1. Download javafx sdk from this [link](https://gluonhq.com/products/javafx/) (if your computer don't have it yet) then extract it to any location you want. 
+--------------[ REQUIREMENT ]----------------------------------------------
+1. Oracle jdk 8
+--------------[ HOW TO RUN ]----------------------------------------------
+1. Go to the root of project
 2. Compile the application
 
 ``` sh
-javac -cp src:lib/hamcrest-core-1.3.jar:lib/richtextfx-fat-0.6.10.jar --module-path /home/ledinhduy/javafx-sdk-18/lib --add-modules javafx.controls,javafx.fxml src/application/MainApp.java
+javac -cp src:lib/hamcrest-core-1.3.jar:lib/richtextfx-fat-0.6.10.jar src/application/MainApp.java
+```
+3. Run 
+
+``` sh
+java -cp src:lib/hamcrest-core-1.3.jar:lib/richtextfx-fat-0.6.10.jar application.MainApp
 ```
 
  
